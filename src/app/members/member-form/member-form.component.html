@@ -1,0 +1,46 @@
+<p-card styleClass="user-form" class="flex justify-content-center">
+    <h4>Quiero ser socio!</h4>
+    <form [formGroup]="memberForm" (ngSubmit)="sendForm()">
+        <div class="field">
+            <label for="firstName" class="block">Nombre</label>
+            <input type="text" pInputText placeholder="Nombre" formControlName="firstName" />
+            @if(memberForm.get('firstName')?.invalid && memberForm.get('firstName')?.dirty){
+                <p-message severity="error" variant="simple" size="small">
+                    requerido
+                </p-message>
+            }
+        </div>
+
+        <div class="field">
+            <label for="lastName" class="block">Apellido</label>
+            <input type="text" pInputText placeholder="Last Name" formControlName="lastName" />
+            @if(memberForm.get('lastName')?.invalid && memberForm.get('lastName')?.dirty){
+                <p-message severity="error" variant="simple" size="small">
+                    requerido
+                </p-message>
+            }
+        </div>
+
+        <div class="field">
+            <label for="email" class="block">Email</label>
+            <input type="text" pInputText placeholder="ejemplo@correo.com" formControlName="email" />
+            @if(memberForm.get('email')?.invalid && memberForm.get('email')?.dirty){
+                <p-message severity="error" variant="simple" size="small">
+                    requerido
+                </p-message>
+            }
+        </div>
+
+        <div class="field">
+            <label for="birthdate" class="block">Fecha de nacimiento</label>
+            <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="dd/mm/yy" formControlName="birthdate" />
+            @if(memberForm.get('birthdate')?.invalid && memberForm.get('birthdate')?.dirty){
+                <p-message severity="error" variant="simple" size="small">
+                    requerido
+                </p-message>
+            }
+        </div>
+
+        <button pButton type="submit" label="Enviar" [disabled]="memberForm.invalid"></button>
+    </form>
+</p-card>
